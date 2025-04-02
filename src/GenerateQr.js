@@ -11,7 +11,7 @@ export default function GenerateQR() {
 
     const [currentaccount, setCurrentaccount] = useState("");
     const [loader, setloader] = useState(true);
-    const [SupplyChain, setSupplyChain] = useState();
+    //const [SupplyChain, setSupplyChain] = useState();
     const [ID, setID] = useState();
     const [MED, setMED] = useState();
     const [MedStage, setMedStage] = useState();
@@ -40,7 +40,7 @@ export default function GenerateQR() {
         if (/*networkData*/ contract_address) {
             //const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
             const supplychain = new web3.eth.Contract(abi, contract_address);
-            setSupplyChain(supplychain);
+            //setSupplyChain(supplychain);
             var i;
             const medCtr = await supplychain.methods.medicineCtr().call();
             const med = {};
