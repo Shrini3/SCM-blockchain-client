@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from "web3";
-import SupplyChainABI from "./artifacts/SupplyChain.json";
+//import SupplyChainABI from "./artifacts/SupplyChain.json";
 import { useHistory } from "react-router-dom";
 import './AssignRoles.css'; // Import custom CSS file
-//import { contract_address, abi } from './contractConfig';
+import { contract_address, abi } from './contractConfig';
 
 function AssignRoles() {
     const history = useHistory();
@@ -47,12 +47,12 @@ function AssignRoles() {
         const web3 = window.web3;
         const accounts = await web3.eth.getAccounts();
         setCurrentAccount(accounts[0]);
-        const networkId = await web3.eth.net.getId();
-        const networkData = SupplyChainABI.networks[networkId];
+        //const networkId = await web3.eth.net.getId();
+        //const networkData = SupplyChainABI.networks[networkId];
 
-        if (/*contract_address*/ networkData) {
-            const contract = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
-            //const contract = new web3.eth.Contract(abi, contract_address);
+        if (contract_address /*networkData*/) {
+            //const contract = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
+            const contract = new web3.eth.Contract(abi, contract_address);
             setSupplyChain(contract);
 
             const rmsCount = await contract.methods.rmsCtr().call();

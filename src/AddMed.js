@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import Web3 from "web3";
-import SupplyChainABI from "./artifacts/SupplyChain.json"
+//import SupplyChainABI from "./artifacts/SupplyChain.json"
+import {abi, contract_address} from "./contractConfig"
 
 function AddMed() {
     const history = useHistory()
@@ -45,10 +46,11 @@ function AddMed() {
         const accounts = await web3.eth.getAccounts();
         const account = accounts[0];
         setCurrentaccount(account);
-        const networkId = await web3.eth.net.getId();
-        const networkData = SupplyChainABI.networks[networkId];
-        if (networkData) {
-            const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
+        //const networkId = await web3.eth.net.getId();
+        //const networkData = SupplyChainABI.networks[networkId];
+        if (/*networkData*/ contract_address) {
+            //const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
+            const supplychain = new web3.eth.Contract(abi, contract_address);
             setSupplyChain(supplychain);
             const medCtr = await supplychain.methods.medicineCtr().call();
             const med = {};
